@@ -3,7 +3,7 @@
     "displayName": "Theme Font Switcher",
     "description": "Switch fonts based on VS Code theme",
     "version": "0.0.1",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/yourusername/theme-font-switcher"
