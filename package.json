@@ -1,0 +1,60 @@
+{
+    "name": "theme-font-switcher",
+    "displayName": "Theme Font Switcher",
+    "description": "Switch fonts based on VS Code theme",
+    "version": "0.0.1",
+    "license": "GPL-3.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/theme-font-switcher"
+    },
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "Theme Font Switcher",
+            "properties": {
+                "themeFontSwitcher.lightThemeFont": {
+                    "type": "string",
+                    "default": "monospace",
+                    "description": "Font to use with light themes."
+                },
+                "themeFontSwitcher.darkThemeFont": {
+                    "type": "string",
+                    "default": "monospace",
+                    "description": "Font to use with dark themes."
+                },
+                "themeFontSwitcher.lightThemeFontSize": {
+                    "type": "number",
+                    "default": 14,
+                    "description": "Font size to use with light themes",
+                    "minimum": 6,
+                    "maximum": 72,
+                    "order": 2
+                },
+                "themeFontSwitcher.darkThemeFontSize": {
+                    "type": "number",
+                    "default": 14,
+                    "description": "Font size to use with dark themes",
+                    "minimum": 6,
+                    "maximum": 72,
+                    "order": 2
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.5",
+        "@types/vscode": "^1.60.0",
+        "@vscode/vsce": "^3.2.1",
+        "typescript": "^5.3.3"
+    },
+    "activationEvents": ["onStartupFinished"]
+}
