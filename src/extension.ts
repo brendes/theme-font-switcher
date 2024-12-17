@@ -2,8 +2,12 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     const outputChannel = vscode.window.createOutputChannel('Theme Font Switcher');
-    outputChannel.show();
-    outputChannel.appendLine('Theme Font Switcher is now active!');
+    const log = (message: string) => {
+        const config = vscode.workspace.getConfiguration('themeFontSwitcher');
+        if (config.get<boolean>('verbose', false)) {
+            outputChannel.appendLine(message);
+        }
+    };
 
     const updateFontSettings = async () => {
         const config = vscode.workspace.getConfiguration('themeFontSwitcher');
@@ -61,7 +65,6 @@ export function activate(context: vscode.ExtensionContext) {
         })
     );
 
-    outputChannel.appendLine('\nInitializing font setup...');
     void updateFontSettings();
 }
 

@@ -41,6 +41,11 @@
                     "minimum": 6,
                     "maximum": 72,
                     "order": 2
+                },
+                "themeFontSwitcher.verbose": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable verbose logging for debugging"
                 }
             }
         }
