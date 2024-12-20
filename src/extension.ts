@@ -22,44 +22,44 @@ export function activate(context: vscode.ExtensionContext) {
         const newFont = isDark ? darkFont : lightFont;
         const newFontSize = isDark ? darkFontSize : lightFontSize;
         
-        outputChannel.appendLine(`Current theme type: ${isDark ? 'dark' : 'light'}`);
-        outputChannel.appendLine(`Selected font: ${newFont}`);
-        outputChannel.appendLine(`Selected font size: ${newFontSize}`);
+        log(`Current theme type: ${isDark ? 'dark' : 'light'}`);
+        log(`Selected font: ${newFont}`);
+        log(`Selected font size: ${newFontSize}`);
 
         try {
             const editorConfig = vscode.workspace.getConfiguration('editor');
             
             try {
                 await editorConfig.update('fontFamily', newFont, vscode.ConfigurationTarget.Global);
-                outputChannel.appendLine('Font family update successful');
+                log('Font family update successful');
             } catch (error: unknown) {
                 const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-                outputChannel.appendLine(`Error updating font family: ${errorMessage}`);
+                log(`Error updating font family: ${errorMessage}`);
             }
             
             try {
                 await editorConfig.update('fontSize', newFontSize, vscode.ConfigurationTarget.Global);
-                outputChannel.appendLine('Font size update successful');
+                log('Font size update successful');
             } catch (error: unknown) {
                 const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-                outputChannel.appendLine(`Error updating font size: ${errorMessage}`);
+                log(`Error updating font size: ${errorMessage}`);
             }
         } catch (error: unknown) {
             const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-            outputChannel.appendLine(`Error in settings update: ${errorMessage}`);
+            log(`Error in settings update: ${errorMessage}`);
         }
     };
 
     // Register event listeners and listen for changes
     context.subscriptions.push(
         vscode.window.onDidChangeActiveColorTheme(() => {
-            outputChannel.appendLine('\nTheme changed, updating font settings...');
+            log('\nTheme changed, updating font settings...');
             void updateFontSettings();
         }),
         
         vscode.workspace.onDidChangeConfiguration(event => {
             if (event.affectsConfiguration('themeFontSwitcher')) {
-                outputChannel.appendLine('\nConfiguration changed, updating font settings...');
+                log('\nConfiguration changed, updating font settings...');
                 void updateFontSettings();
             }
         })
