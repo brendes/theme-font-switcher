@@ -16,8 +16,8 @@ export function activate(context: vscode.ExtensionContext) {
         
         const lightFont = config.get<string>('lightThemeFont', 'monospace');
         const darkFont = config.get<string>('darkThemeFont', 'monospace');
-        const lightFontSize = config.get<number>('lightThemeFontSize', 14);
-        const darkFontSize = config.get<number>('darkThemeFontSize', 14);
+        const lightFontSize = config.get<number>('lightThemeFontSize', 13);
+        const darkFontSize = config.get<number>('darkThemeFontSize', 13);
         
         const newFont = isDark ? darkFont : lightFont;
         const newFontSize = isDark ? darkFontSize : lightFontSize;
